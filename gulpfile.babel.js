@@ -17,7 +17,7 @@ gulp.task('default', () => {
 
 gulp.task('hmr', () => {
     const b = browserify({
-        entries: entry,
+        entries: 'resources/assets/js/app.js',
         plugin: [hmr, watchify],
         debug: true
     })
@@ -30,9 +30,8 @@ gulp.task('hmr', () => {
             .on('error', err => {
                 util.log("Browserify Error", util.colors.red(err.message))
             })
-            .pipe(source(entry))
-            .pipe(flatten())
-            .pipe(gulp.dest(dest));
+            .pipe(source('app.js'))
+            .pipe(gulp.dest('public/js'));
     }
 });
 
